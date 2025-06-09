@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload Audio</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: rgb(230, 227, 222);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #006DAC;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #005292;
+    }
+    a.cancel-btn {
+      font-size: 1rem;
+      color: #006DAC;
+      text-decoration: none;
+      vertical-align: middle;
+    }
+    a.cancel-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST" action="{{ url_for('upload') }}" class="form">
+    <h2>Upload Audio Record</h2>
+    <label for="nam">Name:</label>
+    <input type="text" id="nam" name="nam" required />
+
+    <label for="dis">Description:</label>
+    <input type="text" id="dis" name="dis" required />
+
+    <button type="submit">Submit</button>
+    <a href="{{ url_for('index') }}" class="cancel-btn">Cancel</a>
+  </form>
+</body>
+</html>
