@@ -6,13 +6,13 @@
     <title>Project Sampada Archives: | {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/unesco-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/unesco-logo.png') }}">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
-                <img src="{{ url_for('static', filename='images/unesco-logo.png') }}" alt="UNESCO Logo">
+                <a href="/"><img src="{{ url_for('static', filename='images/unesco-logo.png') }}" alt="UNESCO Logo"></a>
                 <div class="title-group">
                     <h1>Project Sampada Archives</h1>
                     <p class="slogan">Digital Toolkit for Cultural Heritage Preservation</p>
@@ -57,7 +57,7 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <p>Bagmati UNESCO Club<br>
-                    www.bagmatiunescoclub.org</p>
+                    <a href="https://bagmatiunescoclub.org" target="_blank">www.bagmatiunescoclub.org</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
