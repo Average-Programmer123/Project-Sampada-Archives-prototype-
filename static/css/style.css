@@ -1,3 +1,39 @@
+@keyframes bg{
+    0%{
+            background: url('/static/images/content/basantapur.jpeg') center center / cover no-repeat;
+    }
+    10%{
+            background: url('/static/images/content/jatra.jpeg') center center / cover no-repeat;
+    }
+    20%{
+            background: url('/static/images/content/syonath.jpeg') center center / cover no-repeat;
+    }
+    30%{
+            background: url('/static/images/content/sauraha.jpeg') center center / cover no-repeat;
+    }
+    40%{
+            background: url('/static/images/content/nyatapol.jpeg') center center / cover no-repeat;
+    }
+    50%{
+            background: url('/static/images/content/mandir.jpeg') center center / cover no-repeat;
+    }
+    60%{
+            background: url('/static/images/content/mandir3.jpeg') center center / cover no-repeat;
+    }
+    70%{
+            background: url('/static/images/content/mandir2.jpeg') center center / cover no-repeat;
+    }
+    80%{
+            background: url('/static/images/content/lumb.jpeg') center center / cover no-repeat;
+    }
+    90%{
+            background: url('/static/images/content/lumbini.jpeg') center center / cover no-repeat;
+    }
+    95%{
+            background: url('/static/images/content/begnas.jpeg') center center / cover no-repeat;
+    }
+}
+
 :root {
     --primary-color: #006DAC; 
     --secondary-color: #E84E10; 
@@ -48,6 +84,7 @@ a:hover {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    z-index: 5;
 }
 
 .btn:hover {
@@ -129,15 +166,34 @@ nav ul li a:hover {
     font-size: 1.5rem;
     cursor: pointer;
 }
-
-/* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    background: url('/static/images/content/basantapur.jpeg') center center / cover no-repeat;
+    height: 75vh;
     color: white;
     padding: 100px 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: bg 20s infinite step-end;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h2 {
@@ -151,6 +207,7 @@ nav ul li a:hover {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    z-index: 2;
 }
 
 /* Features Grid */
