@@ -10,11 +10,10 @@
     }
     .nav-flex-container {
   display: flex;
-  align-items: center;  /* vertically center all */
-  gap: 15px;            /* spacing between items */
+  align-items: center;  
+  gap: 15px;            
 }
 
-/* Style your links */
 .nav-flex-container a {
   color: black;
   text-decoration: none;
@@ -26,7 +25,7 @@
   color: gray;
 }
 
-/* Upload icon styling */
+
 .upload-icon {
   cursor: pointer;
   color: #333;
@@ -38,7 +37,6 @@
   color: #666;
 }
 
-/* Small search bar */
 .search-box input {
   padding: 6px 10px;
   font-size: 0.9rem;
@@ -246,3 +244,10 @@
       height: 150px;
       border-radius: 10px;
     }
+@media (max-width: 700px) {
+  .audio-tools-header p{
+    font-size: small;
+  }.sort-container a{
+    font-size: small;
+  }
+}
