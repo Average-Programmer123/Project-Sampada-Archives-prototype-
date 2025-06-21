@@ -244,10 +244,82 @@
       height: 150px;
       border-radius: 10px;
     }
-@media (max-width: 700px) {
-  .audio-tools-header p{
-    font-size: small;
-  }.sort-container a{
-    font-size: small;
+@media (max-width: 768px) {
+  .nav-flex-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .search-box,
+  .search-box1,
+  .audio-tools-header .search-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .search-box1 input {
+    width: 100%;
+  }
+
+  .audio-tools {
+    padding: 20px;
+  }
+
+  .audio-tools-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .audio-tools-header p {
+    font-size: 1.1rem;
+  }
+
+  /* Keep filter and search in one row */
+  .filter-container,
+  .sort-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .filter-container select,
+  .sort-container select {
+    width: auto;
+    flex: 1;
+  }
+
+  .list {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .list img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .section-white1 {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+
+  .section-white {
+    padding: 40px 15px;
+  }
+
+  a {
+    padding: 10px;
+    font-size: 0.9rem;
   }
 }
+
