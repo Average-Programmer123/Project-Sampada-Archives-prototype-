@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div style="text-align:center;"><h1 id = "lis">UNESCO Listed</h1></div>
+<h1>Find Location</h1>
+        <div class="search-box">
+            <input type="text" placeholder="Search locations..." id="tool-search">
+            <i class="fas fa-search"></i>
+        </div>
+{%for venues in venues%}
+<div class="ven" title="UNESCO listed since 1979" >
+<div class="ven-img">
+    <img src="{{ venues.image }}">
+  </div>
+<h1>{{venues.name}}</h1>
+<span class="tool-category" title="UNESCO listed since 1979">{{ venues.unesco }}</span>
+<span class="tool-category" title="UNESCO listed since 1979"><i class="fa-solid fa-location-dot"></i> {{ venues.loc }}</span>
+<p>{{venues.teaser}}</p>
+<a><button class="btn" style="margin-top:20px;">Learn More</button></a>
+</div>
+{%endfor%}
+
+<div style="margin: 30px auto; max-width: 1000px; text-align:center;">
+    <h1 id="lis">
+    Heritages on Map
+</h1><br>
+<div class="con">
+    <h2>Legend
+    </h2>
+<div class="legend">
+<ul style="text-align:left;">
+        <li>
+            <i class="fa-solid fa-location-dot" style="color:blue"></i>  UNESCO Listed
+        </li>
+        <li>
+        <i class="fa-solid fa-location-dot" style="color:red"></i>  Not UNESCO listed
+        </li>
+    </ul></div>
+  {{ map_html | safe }}
+</div>
+</div>
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toolCards = document.querySelectorAll('.ven');
+    const searchInput = document.getElementById('tool-search');
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+
+        toolCards.forEach(card => {
+            const titleElement = card.querySelector('h1');
+            const descriptionElement = card.querySelector('p');
+
+            const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+            const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                card.style.display = 'inline-block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+
+{%endblock%}
