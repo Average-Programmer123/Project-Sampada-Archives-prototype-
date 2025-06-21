@@ -22,7 +22,7 @@
                     <span class="location">{{ study.location }}</span>
                     <h3>{{ study.title }}</h3>
                     <p>{{ study.description }}</p>
-                    <a href="#" class="btn btn-small">Read Full Story</a>
+                    <a href="{{study.link}}" target="_blank" class="btn btn-small">Read Full Story</a>
                 </div>
             </div>
             {% endfor %}
@@ -30,13 +30,3 @@
     </div>
 </section>
 
-<section class="submit-case-study">
-    <div class="container">
-        <div class="submit-content">
-            <h2>Share Your Story</h2>
-            <p>Have you used our toolkit to preserve cultural heritage? We'd love to feature your project as a case study.</p>
-            <a href="{{ url_for('contact') }}" class="btn">Submit Your Case Study</a>
-        </div>
-    </div>
-</section>
-{% endblock %}
