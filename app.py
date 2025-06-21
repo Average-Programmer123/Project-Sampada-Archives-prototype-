@@ -3,12 +3,132 @@ import os
 import json
 import time
 from werkzeug.utils import secure_filename
+from datetime import datetime
+import folium
 
 app = Flask(__name__)
 DATA_FILE = 'main.json'
 pic = "https://png.pngtree.com/png-vector/20190729/ourmid/pngtree-files-archive-data-database-documents-folders-abstract-circ-png-image_1622661.jpg"
-
-# Sample data for tools
+not1 = [{
+    'name' : 'Khaptad National Park',
+    'teaser':"A beautiful place in western Nepal known for it's scenic beauty and religious significance." ,
+    'loc' : 'Doti',
+    'lat' : 29.382451,
+    'lon' : 81.126995
+    #more coming soon
+}]
+venues = [
+    {
+        'id': 1,
+        'name': 'Syoyambhunath',
+        'teaser': 'A major Buddhist Pilgrimage site in Kathmandu Metropolitan City.',
+        'link': '/syoyambhunath',
+        'image': '/static/images/content/syonath.jpeg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Kathmandu',
+        'lat': 27.714709,
+        'long': 85.290423
+    },
+    {
+        'id': 2,
+        'name': 'Pashupatinath',
+        'teaser': 'A major ancient Hindu Pilgrimage site in Kathmandu metropolitan city.',
+        'link': '/pashupatinath',
+        'image': '/static/images/content/pashupati.jpeg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Kathmandu',
+        'lat': 27.710068,
+        'long': 85.348593
+    },
+    {
+        'id': 3,
+        'name': 'Basantapur Durbar Square',
+        'teaser': 'A major religious and Pilgrimage site in Kathmandu Metropolitan City. It is also known as Kathmandu Durbar Square and Hanuman Dokha.',
+        'link': '/basantapur',
+        'image': '/static/images/content/basantapur.jpeg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Kathmandu',
+        'lat': 27.704833,
+        'long': 85.307562
+    },
+    {
+        'id': 4,
+        'name': 'Bhaktapur Durbar Square',
+        'teaser': 'A major religious site in Bhaktapur Municipality.',
+        'link': '/bhaktapur',
+        'image': '/static/images/content/nyatapol.jpeg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Bhaktapur',
+        'lat': 27.672413,
+        'long': 85.428738
+    },
+    {
+        'id': 5,
+        'name': 'Patan Durbar Square',
+        'teaser': 'A major religious place in Lalitpur Metropolitan City.',
+        'link': '/patan',
+        'image': '/static/images/content/basantapur.jpeg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Lalitpur',
+        'lat': 27.673827,
+        'long': 85.325055
+    },
+    {
+        'id': 6,
+        'name': 'Changu Narayan',
+        'teaser': 'A major religious place in Changunarayan municipality of Bhaktapur. It is claimed to be the oldest temple of Nepal.',
+        'link': '/changunarayan',
+        'image': '/static/images/content/kttm.png',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Bhaktapur',
+        'lat': 27.716173,
+        'long': 85.427874
+    },
+    {
+        'id': 7,
+        'name': 'Boudhanath',
+        'teaser': 'A major Buddhist pilgrimage place in Kathmandu Metropolitan City.',
+        'link': '/boudhanath',
+        'image': '/static/images/content/kmc.png',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Kathmandu',
+        'lat': 27.721175,
+        'long': 85.361932
+    },
+    {
+        'id': 8,
+        'name': 'Chitwan National Park',
+        'teaser': 'Oldest National Park of Nepal, home to many ecosystem of animals and plants.',
+        'link': '/chitwan-national-park',
+        'image': '/static/images/content/sauraha.jpeg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Chitwan',
+        'lat': 27.522692,
+        'long': 84.326387
+    },
+    {
+        'id': 9,
+        'name': 'Lumbini',
+        'teaser': 'A major Buddhist pilgrimage site renowned for being the birthplace of Lord Gautam Buddha.',
+        'link': '/lumbini',
+        'image': '/static/images/content/lumbini.png',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Kapilvastu',
+        'lat': 27.469477,
+        'long': 83.275773
+    },
+    {
+        'id': 10,
+        'name': 'Sagarmatha National Park',
+        'teaser': "Home to the world's tallest Mountain Sagarmatha or Mt. Everest in English. It is located in Solukhumbu District of Nepal.",
+        'link': '/boudhanath',
+        'image': 'https://www.nepalsanctuarytreks.com/wp-content/uploads/2018/09/Mt._Everest_from_Gokyo_Ri_November_5_2012-scaled.jpg',
+        'unesco': 'UNESCO Listed',
+        'loc': 'Solukhumbu',
+        'lat': 27.985954,
+        'long': 86.924352
+    }
+]
 TOOLS = [
     {
         'id': 1,
@@ -36,7 +156,7 @@ TOOLS = [
         'name': 'Metadata Standards Handbook',
         'category': 'Standards',
         'description': 'UNESCO-approved metadata standards for heritage documentation',
-        'link': '#'
+        'link': '/metadata'
     },
     {
         'id': 5,
@@ -60,19 +180,22 @@ CASE_STUDIES = [
         'title': 'Immersive Digital Preservation of Mustang Architectural Caves',
         'location': 'Nepal',
         'description': 'This initiative proposes a scalable AR/VR platform to digitally preserve and showcase over 10,000 architectural caves in Mustang, Nepal, starting with 3D virtual tours using drone photogrammetry and LiDAR. It supports future expansions like AR apps, VR modules for education, and integration with global heritage platforms. By enabling continuous updates and open collaboration, the project ensures long-term conservation while positioning Nepal as a leader in digital heritage innovation.',
-        'image': 'cave.jpg'
+        'image': 'cave.jpg',
+        'link':'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwig19DG6v2NAxUlzTgGHaB7ECMQFnoECBgQAQ&url=https%3A%2F%2Fwhc.unesco.org%2Fdocument%2F206803&usg=AOvVaw04HQ7LMhBa0LQrlSFFqG4V&opi=89978449'
     },
     {
         'title': '3D Documentation of Angkor Wat',
         'location': 'Cambodia',
         'description': 'Using laser scanning to create detailed records of the temple complex',
-        'image': '3d.jpg'
+        'image': '3d.jpg',
+        'link' : 'https://www.researchgate.net/publication/253948834_Reality-based_3D_modeling_of_the_Angkorian_temples_using_aerial_images'
     },
     {
         'title': 'Community Archives of Intangible Heritage',
         'location': 'Brazil',
         'description': 'Empowering local communities to document their cultural practices',
-        'image': 'brazil.jpg'
+        'image': 'brazil.jpg',
+        'link' : 'https://www.unesco.org/en/fieldoffice/brasilia/expertise/world-cultural-heritage-brazil'
     }
 ]
 
@@ -135,16 +258,17 @@ def upload():
         file = request.files['imgg']
         audd = request.files['aud']
         date_created = time.strftime("%m/%d/%Y")
+        time_created = time.strftime("%m/%d/%Y/%H/%M/%S")
 
         if file and file.filename != '':
             filename = secure_filename(file.filename)
             upload_folder = os.path.join('static', 'uploads')
-            os.makedirs(upload_folder, exist_ok=True)  # ✅ Ensure folder exists
+            os.makedirs(upload_folder, exist_ok=True) 
             filepath = os.path.join(upload_folder, filename)
             file.save(filepath)
             img_url = url_for('static', filename='uploads/' + filename)
         else:
-            img_url = pic  # fallback image
+            img_url = pic  
         
         if audd and audd.filename != '':
             audio_filename = secure_filename(audd.filename)
@@ -152,7 +276,7 @@ def upload():
             audd.save(audio_path)
             audio_url = url_for('static', filename='uploads/' + audio_filename)
         else:
-            audio_url = None  # or a default/fallback audio file if you want
+            audio_url = None 
 
         audio_items = read()
         new_id = max([item['id'] for item in audio_items], default=0) + 1
@@ -164,7 +288,8 @@ def upload():
             'date': date_created,
             'picture': img_url,
             'audio' : audio_url,
-            'genre' : sell
+            'genre' : sell,
+            'time' : time_created
         })
         print(sell)
         write_audio_data(audio_items)
@@ -236,7 +361,7 @@ def upload():
                 <label>Image:</label>
                 <input type="file" name="imgg" accept="image/*"><br>
                 <label>Audio:</label>
-                <input type="file" name="aud" accept="audio/*" ><br>
+                <input type="file" name="aud" accept="audio/*" required><br>
                 <label>Audio genre:</label><br>
                 <select id="sel" class="sel" name="sel">
                 <option value="music">Music</option>
@@ -245,7 +370,7 @@ def upload():
                 </select><br>
                 <input type="submit" value="Upload">
             </form>
-            <a href="/" class="back-link">← Back to Home</a>
+            <a href="/audio_kit" class="back-link">← Back to Home</a>
             <hr>
             <h3>Existing Audio Items</h3>
         '''
@@ -286,5 +411,49 @@ def api_tool(tool_id):
 @app.route('/photo_kit')
 def show():
     return render_template('pic.html')
+
+def sort():
+    with open('data.json', 'r') as f:
+        data = json.load(f)
+        
+    data.sort(key=lambda x: datetime.fromisoformat(x['time']))
+    with open('data.json', 'w') as f:
+        json.dump(data, f, indent=4)
+        
+    for item in data:
+        print(item['name'], item['time'])
+@app.route('/metadata')
+def meta():
+    fmap = folium.Map(location=[29.5, 84], zoom_start=6)
+
+    for venue in venues:
+        if 'loc' in venue and 'long' in venue:
+            folium.Marker(
+                location=[venue['lat'], venue['long']],  
+                popup=folium.Popup(f"<strong><h1>{venue['name']}</h1></strong><br>{venue['teaser']}", max_width=300),
+            icon=folium.Icon(color='blue', icon='info-sign')
+            ).add_to(fmap)
+    for ven in not1:
+        if 'loc' in ven and 'lon' in ven:
+         folium.Marker(
+            location=[ven['lat'], ven['lon']],
+            popup=folium.Popup(f"<strong><h1>{ven['name']}</h1></strong><br>{ven['teaser']}", max_width=300),
+            icon=folium.Icon(color='red', icon='info-sign')
+        ).add_to(fmap)
+
+    fmap.get_root().html.add_child(folium.Element("""
+    <style>
+        #map {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+    </style>
+"""))
+    map_html = fmap._repr_html_()
+    return render_template('metadata.html', venues=venues, map_html=map_html)
+print("Adding non-UNESCO venues:")
+for ven in not1:
+    print(ven['name'])
+
 if __name__ == '__main__':
     app.run(debug=True)
