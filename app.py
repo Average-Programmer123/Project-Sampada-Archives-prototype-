@@ -444,7 +444,7 @@ def meta():
         if 'loc' in ven and 'lon' in ven:
          folium.Marker(
             location=[ven['lat'], ven['lon']],
-            popup=folium.Popup(f"<strong><h1>{ven['name']}</h1></strong><br><strong style='color:gray'><h6>{ven['loc']}</h6></strong><br><br>{ven['teaser']}", max_width=300),
+            popup=folium.Popup(f"<strong><h1>{ven['name']}</h1></strong><br><strong style='color:gray'><h4>{ven['loc']}</h4></strong><br><br>{ven['teaser']}", max_width=300),
             icon=folium.Icon(color='red', icon='info-sign')
         ).add_to(fmap)
 
