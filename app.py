@@ -12,9 +12,16 @@ pic = "https://png.pngtree.com/png-vector/20190729/ourmid/pngtree-files-archive-
 not1 = [{
     'name' : 'Khaptad National Park',
     'teaser':"A beautiful place in western Nepal known for it's scenic beauty and religious significance." ,
-    'loc' : 'Doti',
+    'loc' : 'Doti, Accham, Bajura, Bajhang',
     'lat' : 29.382451,
     'lon' : 81.126995
+},
+       {
+    'name' : 'Shuklaphanta National Park',
+    'teaser':"A beautiful place in western Nepal with many species of animals and plants present." ,
+    'loc' : 'Kanchanpur',
+    'lat' : 28.858301,
+    'lon' : 80.252842
     #more coming soon
 }]
 venues = [
