@@ -437,7 +437,7 @@ def meta():
         if 'loc' in venue and 'long' in venue:
             folium.Marker(
                 location=[venue['lat'], venue['long']],  
-                popup=folium.Popup(f"<strong><h1>{venue['name']}</h1></strong><br>{venue['teaser']}", max_width=300),
+                popup=folium.Popup(f"<strong><h1>{venue['name']}</h1></strong><br><strong style='color:gray'><h4>{venue['loc']}</h4></strong><br><br><br>{venue['teaser']}", max_width=300),
             icon=folium.Icon(color='blue', icon='info-sign')
             ).add_to(fmap)
     for ven in not1:
