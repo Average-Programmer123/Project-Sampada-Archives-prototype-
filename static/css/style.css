@@ -137,7 +137,9 @@ header {
     height: 130px;
     margin-right: 10px;
 }
-
+.practice-categories {
+  height: auto;
+}
 .logo h1 {
     font-size: 1.5rem;
     color: var(--primary-color);
