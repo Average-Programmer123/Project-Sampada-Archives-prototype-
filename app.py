@@ -23,7 +23,37 @@ not1 = [{
     'lat' : 28.858301,
     'lon' : 80.252842
     #more coming soon
-}]
+},
+       {
+    'name' : 'Shey Phoksundo National Park',
+    'teaser':"The biggest national park of Nepal located in Karnali Province." ,
+    'loc' : 'Dolpa',
+    'lat' : 29.199813,
+    'lon' : 82.958476
+    #more coming soon
+}, {
+    'name' : 'Api Nampa Conservation area',
+    'teaser':"The tallest mountain of the West." ,
+    'loc' : 'Darchula',
+    'lat' : 29.967382,
+    'lon' : 80.936520
+    #more coming soon
+},
+       {
+    'name' : 'Malikarjun Temple',
+    'teaser':"One os the oldest Hindu temples. Beleived to be built in the second century." ,
+    'loc' : 'Darchula',
+    'lat' : 29.734714,
+    'lon' : 80.485778
+    #more coming soon
+}, {
+    'name' : 'Malikarjun Temple',
+    'teaser':"One os the oldest Hindu temples. Beleived to be built in the second century." ,
+    'loc' : 'Darchula',
+    'lat' : 29.734714,
+    'lon' : 80.485778
+    #more coming soon
+},]
 venues = [
     {
         'id': 1,
