@@ -7,6 +7,7 @@
             <input type="text" placeholder="Search locations..." id="tool-search">
             <i class="fas fa-search"></i>
         </div>
+<div class="venuess">
 {%for venues in venues%}
 <div class="ven" title="UNESCO listed since 1979" >
 <div class="ven-img">
@@ -19,7 +20,7 @@
 <a href="{{venues.link}}"><button class="btn" style="margin-top:20px;">Learn More</button></a>
 </div>
 {%endfor%}
-
+</div>
 <div style="margin: 30px auto; max-width: 1000px; text-align:center;">
     <h1 id="lis">
     Heritages on Map
