@@ -32,6 +32,7 @@
     95%{
             background: url('/static/images/content/begnas.jpeg') center center / cover no-repeat;
     }
+      100% { background: url('/static/images/content/basantapur.jpeg') center center / cover no-repeat; }
 }
 
 :root {
