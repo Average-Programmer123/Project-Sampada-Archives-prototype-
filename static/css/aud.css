@@ -14,40 +14,8 @@
 .upload-icon:hover {
   color: #666;
 }
-
-.search-box input {
-  padding: 6px 10px;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  width: 150px;
-}
-
     .upload-icon:hover {
       color: #ccc;
-    }
-
-    .search-box {
-      position: relative;
-      width: 220px;
-      margin-right: 80px;
-    }
-
-    .search-box i {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #6c757d;
-      font-size: 1rem;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 10px 10px 10px 34px;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
     }
     .search-box1 {
       position: relative;
