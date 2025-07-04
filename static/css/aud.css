@@ -4,19 +4,6 @@
       background-color: rgb(232, 231, 231);
     }
 
-.upload-icon {
-  cursor: pointer;
-  color: #333;
-  font-size: 20px;
-  padding: 8px 12px;
-}
-
-.upload-icon:hover {
-  color: #666;
-}
-    .upload-icon:hover {
-      color: #ccc;
-    }
     .search-box1 {
       position: relative;
       width: 650px;
@@ -177,14 +164,7 @@
     .list:hover {
       background-color: #b8b6b6;
     }
-    a{
-      text-decoration: none;
-      padding: 20px;
-      color:black;
-      text-align: center;
-    }a:hover{
-      color:gray;
-    }
+   
     .list img {
       width: 150px;
       height: 150px;
